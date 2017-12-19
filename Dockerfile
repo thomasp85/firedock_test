@@ -9,7 +9,7 @@ RUN useradd --create-home --shell /bin/bash ruser
 USER ruser
 WORKDIR /home/ruser
 
-ADD firedock /home/ruser/
+ADD firedock/* /home/ruser/firedock/
 
 RUN R CMD build firedock
 
