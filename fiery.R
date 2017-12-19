@@ -19,10 +19,19 @@ hFallback <- function(request, response, keys, ...) {
 }
 route$add_handler('get', '/*', hFallback)
 
+
+
+route2 <- Route$new()
+
+route2$add_handler('all', '/*', function(request, response, keys, ...) {
+  validate_user(request)
+})
+
+router$add_route(route2, 'validator')
 router$add_route(route, 'main')
 
 app <- Fire$new(host = '0.0.0.0', port = 8080)
-app$root <- '/fiery'
+app$root <- Sys.getenv('FIERY_ROOT')
 app$attach(router)
 app$set_logger(logger_console())
 
