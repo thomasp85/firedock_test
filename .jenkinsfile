@@ -19,12 +19,12 @@ node{
 			sh 'curl http://127.0.0.1:8000/master/hello/world/'
 			sh 'fail fail fail'
 		} catch (e) {
-			throw e
-
+			currentBuild.result = 'FAILURE'
 		} finally {
-			stage("clean up") {
-				sh "docker container kill //mylittlefiery"
-			}
+
 		}
+	}
+	stage("clean up") {
+		sh "docker container kill //mylittlefiery"
 	}
 }
