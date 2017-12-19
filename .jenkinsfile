@@ -21,7 +21,7 @@ node{
 			currentBuild.result = 'FAILURE'
 			throw e
 		} finally {
-			sh "docker container kill //mylittlefiery"
+			sh "docker container kill mylittlefiery"
 		}
 	}
 }
