@@ -16,7 +16,7 @@ node{
 	stage("run docker"){
 		try {
 			sh 'docker container run --name mylittlefiery -d -p 8000:8080 fiery-test'
-			sh 'curl localhost:8000/hello/world'
+			sh 'curl http://127.0.0.1:8000/hello/world/'
 		} catch (e) {
 
 		} finally {
