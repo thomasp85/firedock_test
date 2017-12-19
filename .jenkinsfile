@@ -3,16 +3,20 @@
 // Run image
 // End-to-end test
 
-node{
+node {
 	stage('checkout'){
 		checkout scm
 	}
 	stage('build docker image'){
 		sh 'docker build --build-arg root="master" -t fiery-test:latest . '
 	}
+node {
 	stage("run docker"){
-		try {
-			sh 'docker container run --name mylittlefiery --rm -d -p 8000:8080 fiery-test'
+		sh 'docker container run --name mylittlefiery --rm -p 8000:8080 fiery-test'
+	}
+}
+node {
+		try {		
 			sh 'sleep 5'
 			sh 'curl http://127.0.0.1:8000/master/hello/world/'
 		} catch (e) {
