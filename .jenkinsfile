@@ -16,12 +16,13 @@ node{
 	stage("run docker"){
 		try {
 			sh 'docker container run --name mylittlefiery --rm -d -p 8000:8080 fiery-test'
+			sh 'sleep 5'
 			sh 'curl http://127.0.0.1:8000/master/hello/world/'
 		} catch (e) {
 			currentBuild.result = 'FAILURE'
 			throw e
 		} finally {
-//			sh "docker container kill mylittlefiery"
+			sh "docker container kill mylittlefiery"
 		}
 	}
 }
