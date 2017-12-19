@@ -14,7 +14,15 @@ node{
 		sh 'docker build --build-arg root="master" -t fiery-test:latest . '
 	}
 	stage("run docker"){
-		sh 'docker container run -d -p 8000:8080 fiery-test'
-		sh 'curl localhost:8000/hello/world'
+		try {
+			sh 'docker container run --name mylittlefiery -d -p 8000:8080 fiery-test'
+			sh 'curl localhost:8000/hello/world'
+		} catch () {
+
+		} finally {
+			stage("clean up") {
+				sh "docker container kill mylittlefiery"
+			}
+		}
 	}
 }
