@@ -8,7 +8,7 @@ node {
 		checkout scm
 	}
 	stage('build docker image'){
-		sh 'docker build --build-arg root="master" -t fiery-test:latest . '
+		sh 'docker build --build-arg root="${BRANCH_NAME}" -t fiery-test:latest . '
 	}
 }
 node {
@@ -18,7 +18,7 @@ node {
 	stage("test docker") {
 		try {		
 			sh 'sleep 5'
-			out = sh(returnStdout: true, script: 'curl -s http://127.0.0.1:8000/master/hello/world/')
+			out = sh(returnStdout: true, script: 'curl -s http://127.0.0.1:8000/${BRANCH_NAME}/hello/world/')
 			echo out
 			if (out ==  "<h1>Hello world!</h1>[Pipeline]") {
 				exit 1
