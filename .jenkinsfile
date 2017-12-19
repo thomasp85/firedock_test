@@ -10,6 +10,7 @@ node {
 	stage('build docker image'){
 		sh 'docker build --build-arg root="master" -t fiery-test:latest . '
 	}
+}
 node {
 	stage("run docker"){
 		sh 'docker container run --name mylittlefiery --rm -p 8000:8080 fiery-test'
