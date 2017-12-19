@@ -16,6 +16,7 @@ node {
 	}
 }
 node {
+	stage("test docker") {
 		try {		
 			sh 'sleep 5'
 			sh 'curl http://127.0.0.1:8000/master/hello/world/'
