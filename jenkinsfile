@@ -1,0 +1,20 @@
+// Add env variables
+// Build image
+// Run image
+// End-to-end test
+
+node{
+	stage('checkout'){
+		checkout([$class: 'GitSCM', branches: [[name: '*/master']], 
+      	doGenerateSubmoduleConfigurations: false, extensions: [], 
+      	submoduleCfg: [], userRemoteConfigs: [[credentialsId: '8a5c5968-0508-4d5b-b6e5-819fd464435f', 
+      	url: 'https://github.com/thomasp85/firedock_test']]])
+	}
+	stage('build docker image'){
+		sh 'docker build --build-arg root="master" -t fiery-test:latest . '
+	}
+	stage("run docker"){
+		sh 'docker container run -d -p 8000:8080 fiery-test'
+		sh 'curl localhost/hello/world'
+	}
+}
