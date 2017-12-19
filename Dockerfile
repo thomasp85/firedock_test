@@ -15,4 +15,4 @@ RUN R CMD build firedock
 
 EXPOSE 8080
 
-CMD ["Rscript", "-e 'firedock::app$ignite()'"]
+CMD Rscript -e 'firedock::app$ignite()'
