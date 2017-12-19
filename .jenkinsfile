@@ -18,7 +18,11 @@ node {
 	stage("test docker") {
 		try {		
 			sh 'sleep 5'
-			sh 'curl http://127.0.0.1:8000/master/hello/world/'
+			out = sh(returnStdout: true, script: 'curl -s http://127.0.0.1:8000/master/hello/world/')
+			echo out
+			if (out ==  "<h1>Hello world!</h1>[Pipeline]") {
+				exit 1
+			}
 		} catch (e) {
 			currentBuild.result = 'FAILURE'
 			throw e
