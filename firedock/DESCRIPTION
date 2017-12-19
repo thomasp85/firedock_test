@@ -1,0 +1,16 @@
+Package: firedock
+Title: A minimal fiery app
+Version: 0.0.0.9000
+Authors@R: person("Thomas Lin", "Pedersen", email = "thomasp85@gmail.com", role = c("aut", "cre"))
+Description: Veeery minimal hello world fiery app for testing different fiery
+    setups. Define a random plot, a catchall path, and a /hello/:something/ path
+    as well as lets you set the mountpoint by setting the FIERY_ROOT environment
+    variable.
+Depends: R (>= 3.4.3)
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports: fiery,
+    routr
+RoxygenNote: 6.0.1.9000
+Roxygen: list(markdown = TRUE)
