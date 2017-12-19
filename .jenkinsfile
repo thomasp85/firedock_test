@@ -5,10 +5,7 @@
 
 node{
 	stage('checkout'){
-		checkout([$class: 'GitSCM', branches: [[name: '*/master']], 
-      	doGenerateSubmoduleConfigurations: false, extensions: [], 
-      	submoduleCfg: [], userRemoteConfigs: [[credentialsId: '8a5c5968-0508-4d5b-b6e5-819fd464435f', 
-      	url: 'https://github.com/thomasp85/firedock_test']]])
+		checkout scm
 	}
 	stage('build docker image'){
 		sh 'docker build --build-arg root="master" -t fiery-test:latest . '
