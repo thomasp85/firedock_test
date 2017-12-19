@@ -20,6 +20,7 @@ node{
 			sh 'fail fail fail'
 		} catch (e) {
 			currentBuild.result = 'FAILURE'
+			throw e
 		} finally {
 
 		}
