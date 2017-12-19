@@ -18,6 +18,7 @@ node{
 			sh 'docker container run --name mylittlefiery -d -p 8000:8080 fiery-test'
 			sh 'curl localhost:8000/hello/world'
 		} catch (e) {
+			throw e
 
 		} finally {
 			stage("clean up") {
