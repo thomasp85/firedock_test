@@ -9,8 +9,10 @@ RUN useradd --create-home --shell /bin/bash ruser
 USER ruser
 WORKDIR /home/ruser
 
-ADD fiery.R /home/ruser/
+ADD firedock /home/ruser/
+
+RUN R CMD build firedock
 
 EXPOSE 8080
 
-CMD ["Rscript", "fiery.R"]
+CMD ["Rscript", "-e 'firedock::app$ignite()'"]
