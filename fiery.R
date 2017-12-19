@@ -19,15 +19,6 @@ hFallback <- function(request, response, keys, ...) {
 }
 route$add_handler('get', '/*', hFallback)
 
-
-
-route2 <- Route$new()
-
-route2$add_handler('all', '/*', function(request, response, keys, ...) {
-  validate_user(request)
-})
-
-router$add_route(route2, 'validator')
 router$add_route(route, 'main')
 
 app <- Fire$new(host = '0.0.0.0', port = 8080)
