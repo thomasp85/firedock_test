@@ -1,0 +1,9 @@
+FROM thomasp85/firedock_test
+
+ADD firedock /firedock
+
+RUN R CMD build firedock
+
+RUN R CMD check firedock_*; exit 0
+
+RUN Rscript -e "check <- rcmdcheck::parse_check('firedock.Rcheck/00check.log'); print(check); pass <- length(check[['errors']]) == 0; writeLines(if (pass) 'SUCCESS' else 'FAILURE', 'check_result')"

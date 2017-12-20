@@ -7,6 +7,16 @@ node {
 	stage('checkout'){
 		checkout scm
 	}
+	stage('R check') {
+		sh 'docker build --no-cache -t fiery-check:latest -f Dockerfile_check .'
+		sh 'docker container create --name firecheck fiery-check'
+		sh 'docker cp firecheck:check_result check_result'
+		sh 'docker cp firecheck:firedock.Rcheck check_artefacts'
+		sh 'docker rm firecheck'
+		sh 'tar czf check_artefacts.tar.gz check_artefacts'
+		archive check_artefacts.tar.gz
+		sh 'grep SUCCESS check_result'
+	}
 	stage('build docker image'){
 		sh 'docker build --build-arg root="${BRANCH_NAME}" -t fiery-test:latest . '
 	}
