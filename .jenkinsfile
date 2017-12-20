@@ -38,7 +38,7 @@ node {
 				sh "docker container kill deploy"
 				sh "docker container run -e root='/' --name deploy --rm -p 10080:8080 fiery-test:deploy"
 			}
-		} else if (BRANCH_NAME == "predeploy" {
+		} else if (BRANCH_NAME == "predeploy") {
 			sshagent(['olsgaard']) {
 	 			sh 'git push origin predeploy:master'
 			}
