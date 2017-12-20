@@ -42,8 +42,8 @@ node {
 		} else if (BRANCH_NAME == "predeploy") {
 			sshagent(credentials: ['olsgaard']) {
 				sh 'git checkout master'
-				sh 'git pull'
-				sh 'git merge origin/predeploy'
+				//sh 'git pull'
+				//sh 'git merge origin/predeploy'
 	 			sh 'git push'
 			}
 		}
