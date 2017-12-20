@@ -14,7 +14,7 @@ node {
 		sh 'docker cp firecheck:firedock.Rcheck check_artefacts'
 		sh 'docker rm firecheck'
 		sh 'tar czf check_artefacts.tar.gz check_artefacts'
-		archive check_artefacts.tar.gz
+		archive 'check_artefacts.tar.gz'
 		sh 'grep SUCCESS check_result'
 	}
 	stage('build docker image'){
