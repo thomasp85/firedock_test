@@ -8,7 +8,7 @@ node {
 		checkout scm
 	}
 	stage('R check') {
-		sh 'docker build --no-cache -t fiery-check:latest -f Dockerfile_check .'
+		sh 'docker build --pull --no-cache -t fiery-check:latest -f Dockerfile_check .'
 		sh 'docker container create --name firecheck fiery-check'
 		sh 'docker cp firecheck:check_result check_result'
 		sh 'docker cp firecheck:firedock.Rcheck check_artefacts'
