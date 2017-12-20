@@ -42,7 +42,7 @@ node {
 			sshagent(['olsgaard']) {
 				sh 'git checkout master'
 				sh 'git pull'
-				sh 'git merge predeploy'
+				sh 'git merge origin/predeploy'
 	 			sh 'git push'
 			}
 		}
