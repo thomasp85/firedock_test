@@ -15,4 +15,4 @@ WORKDIR /home/ruser
 
 EXPOSE 8080
 
-CMD Rscript -e 'firedock::app$ignite()'
+CMD Rscript -e 'firedock::get_app()$ignite()'
