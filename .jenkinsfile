@@ -13,6 +13,7 @@ node {
 }
 node {
 	stage("run docker"){
+		// https://vsupalov.com/docker-build-time-env-values/
 		sh 'docker container run -e root="${BRANCH_NAME}" --name mylittlefiery --rm -p 8000:8080 fiery-test:${BRANCH_NAME} &'
 	}
 	stage("test docker") {
@@ -39,7 +40,7 @@ node {
 				sh "docker container run -e root='/' --name deploy --rm -p 10080:8080 fiery-test:deploy"
 			}
 		} else if (BRANCH_NAME == "predeploy") {
-			sshagent(['olsgaard']) {
+			sshagent(credentials: ['olsgaard']) {
 				sh 'git checkout master'
 				sh 'git pull'
 				sh 'git merge origin/predeploy'
