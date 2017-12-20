@@ -40,7 +40,7 @@ node {
 				sh "docker container run -e root='/' --name deploy --rm -p 10080:8080 fiery-test:deploy"
 			}
 		} else if (BRANCH_NAME == "predeploy") {
-			sshagent(credentials: ['lkasjlkasjdlasj']) {
+			sshagent(credentials: ['8a5c5968-0508-4d5b-b6e5-819fd464435f']) {
 				sh 'git checkout master'
 				//sh 'git pull'
 				//sh 'git merge origin/predeploy'
